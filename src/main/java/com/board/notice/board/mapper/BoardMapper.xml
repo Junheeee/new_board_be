@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.board.notice.board.mapper.BoardMapper">
+    <select id="getBoardList" resultType="boardListRs">
+        SELECT 
+            B.BOARD_SNO,
+            B.TITLE,
+            C.CSTMR_NM,
+            B.REG_DATE,
+            B.VIEWS,
+            B.CTGR_DIV_CD
+        FROM BOARD B, CSTMR C
+        WHERE B.CSTMR_SNO = C.CSTMR_SNO AND B.DEL_YN = 'N'
+        <if test="ctgrDivCd != 'ALL'">
+        AND B.CTGR_DIV_CD = #{ctgrDivCd}
+        </if>
+    </select>
+
+    <insert id="insertBoard">
+        INSERT INTO BOARD (
+            TITLE,
+            CONTENT,
+            CSTMR_SNO,
+            CTGR_DIV_CD
+        ) VALUE (
+            #{title},
+            #{content},
+            #{cstmrSno},
+            #{ctgrDivCd}
+        )
+    </insert>
+
+    <select id="getBoardDetail" resultType="boardDetailRs">
+        SELECT 
+            B.BOARD_SNO,
+            B.TITLE,
+            B.CONTENT,
+            B.CSTMR_SNO,
+            C.CSTMR_NM,
+            B.REG_DATE,
+            B.CTGR_DIV_CD,
+            B.VIEWS
+        FROM BOARD B, CSTMR C
+        WHERE B.CSTMR_SNO = C.CSTMR_SNO AND B.BOARD_SNO = #{boardSno}
+    </select>
+
+    <update id="updateBoard">
+        UPDATE BOARD
+        SET TITLE = #{title},
+            CONTENT = #{content},
+            UPD_DATE = NOW(),
+            CTGR_DIV_CD = #{ctgrDivCd}
+        WHERE BOARD_SNO = #{boardSno}
+    </update>
+
+    <update id="deleteBoard">
+        UPDATE BOARD
+        SET DEL_YN = 'Y'
+        WHERE BOARD_SNO = #{boardSno}
+    </update>
+
+    <select id="getBoardCtgrList" resultType="boardCtgrRs">
+        SELECT
+            CTGR_DIV_CD,
+            CTGR_NM
+        FROM CATEGORY
+    </select>
+
+    <update id="updateViews">
+        UPDATE BOARD
+        SET VIEWS = VIEWS + 1
+        WHERE BOARD_SNO = #{boardSno}
+    </update>
+</mapper>
