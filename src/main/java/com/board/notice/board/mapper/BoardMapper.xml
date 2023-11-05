@@ -12,7 +12,7 @@
         FROM BOARD B, CSTMR C
         WHERE B.CSTMR_SNO = C.CSTMR_SNO AND B.DEL_YN = 'N'
         <if test="ctgrDivCd != 'ALL'">
-        AND B.CTGR_DIV_CD = #{ctgrDivCd}
+            AND B.CTGR_DIV_CD = #{ctgrDivCd}
         </if>
     </select>
 
