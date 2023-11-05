@@ -12,4 +12,12 @@
             #{cstmrNm}
         )
     </insert>
+
+    <select id="anyUserLogin" resultType="boolean">
+        SELECT
+            COUNT(*)
+        FROM CSTMR
+        WHERE LOGIN_ID = #{loginId} AND LOGIN_PSWD = #{loginPswd} 
+        LIMIT 1
+    </select>
 </mapper>
