@@ -27,24 +27,24 @@ public class BoardService {
         return boardMapper.insertBoard(rq);
     }
 
-    public BoardDetailRs getBoardDetail(int boardSno) {
-        return boardMapper.getBoardDetail(boardSno);
+    public BoardDetailRs getBoardDetail(int brdSno) {
+        return boardMapper.getBoardDetail(brdSno);
     }
 
     public int updateBoard(BoardUpdateRq rq) {
         return boardMapper.updateBoard(rq);
     }
 
-    public int deleteBoard(int boardSno) {
-        return boardMapper.deleteBoard(boardSno);
+    public int deleteBoard(int brdSno) {
+        return boardMapper.deleteBoard(brdSno);
     }
 
     public List<BoardCtgrRs> getBoardCtgrList() {
         return boardMapper.getBoardCtgrList();
     }
 
-    public int updateViews(int boardSno) {
-        return boardMapper.updateViews(boardSno);
+    public int updateViews(int brdSno) {
+        return boardMapper.updateViews(brdSno);
     }
 
 }

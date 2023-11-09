@@ -3,21 +3,22 @@
 <mapper namespace="com.board.notice.board.mapper.BoardMapper">
     <select id="getBoardList" resultType="boardListRs">
         SELECT 
-            B.BOARD_SNO,
+            B.BRD_SNO,
             B.TITLE,
             C.CSTMR_NM,
-            B.REG_DATE,
+            B.REG_DT,
             B.VIEWS,
             B.CTGR_DIV_CD
-        FROM BOARD B, CSTMR C
+        FROM CNS_BRD_BAS B, PTY_CSTMR_BAS C
         WHERE B.CSTMR_SNO = C.CSTMR_SNO AND B.DEL_YN = 'N'
         <if test="ctgrDivCd != 'ALL'">
             AND B.CTGR_DIV_CD = #{ctgrDivCd}
         </if>
+        ORDER BY B.BRD_SNO ASC
     </select>
 
     <insert id="insertBoard">
-        INSERT INTO BOARD (
+        INSERT INTO CNS_BRD_BAS (
             TITLE,
             CONTENT,
             CSTMR_SNO,
@@ -32,43 +33,43 @@
 
     <select id="getBoardDetail" resultType="boardDetailRs">
         SELECT 
-            B.BOARD_SNO,
+            B.BRD_SNO,
             B.TITLE,
             B.CONTENT,
             B.CSTMR_SNO,
             C.CSTMR_NM,
-            B.REG_DATE,
+            B.REG_DT,
             B.CTGR_DIV_CD,
             B.VIEWS
-        FROM BOARD B, CSTMR C
-        WHERE B.CSTMR_SNO = C.CSTMR_SNO AND B.BOARD_SNO = #{boardSno}
+        FROM CNS_BRD_BAS B, PTY_CSTMR_BAS C
+        WHERE B.CSTMR_SNO = C.CSTMR_SNO AND B.BRD_SNO = #{brdSno}
     </select>
 
     <update id="updateBoard">
-        UPDATE BOARD
+        UPDATE CNS_BRD_BAS
         SET TITLE = #{title},
             CONTENT = #{content},
-            UPD_DATE = NOW(),
+            UPD_DT = NOW(),
             CTGR_DIV_CD = #{ctgrDivCd}
-        WHERE BOARD_SNO = #{boardSno}
+        WHERE BRD_SNO = #{brdSno}
     </update>
 
     <update id="deleteBoard">
-        UPDATE BOARD
+        UPDATE CNS_BRD_BAS
         SET DEL_YN = 'Y'
-        WHERE BOARD_SNO = #{boardSno}
+        WHERE BRD_SNO = #{brdSno}
     </update>
 
     <select id="getBoardCtgrList" resultType="boardCtgrRs">
         SELECT
             CTGR_DIV_CD,
             CTGR_NM
-        FROM CATEGORY
+        FROM COM_CTGR_CD
     </select>
 
     <update id="updateViews">
-        UPDATE BOARD
+        UPDATE CNS_BRD_BAS
         SET VIEWS = VIEWS + 1
-        WHERE BOARD_SNO = #{boardSno}
+        WHERE BRD_SNO = #{brdSno}
     </update>
 </mapper>

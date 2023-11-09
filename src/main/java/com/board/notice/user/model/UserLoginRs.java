@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 @Alias("userLoginRs")
 public class UserLoginRs {
+    private int cstmrSno;
     private String loginId;
     private String cstmrNm;
 }

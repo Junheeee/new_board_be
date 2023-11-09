@@ -16,13 +16,13 @@ public interface BoardMapper {
 
     int insertBoard(BoardCreateRq rq);
 
-    BoardDetailRs getBoardDetail(int boardSno);
+    BoardDetailRs getBoardDetail(int brdSno);
 
     int updateBoard(BoardUpdateRq rq);
 
-    int deleteBoard(int boardSno);
+    int deleteBoard(int brdSno);
 
     List<BoardCtgrRs> getBoardCtgrList();
 
-    int updateViews(int boardSno);
+    int updateViews(int brdSno);
 }

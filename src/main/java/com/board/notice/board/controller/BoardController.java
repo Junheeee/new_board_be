@@ -43,8 +43,8 @@ public class BoardController {
     }
 
     @GetMapping("/detail")
-    public ResponseEntity<BoardDetailRs> getBoardDetail(@RequestParam("boardSno") int boardSno) {
-        BoardDetailRs detail = boardService.getBoardDetail(boardSno);
+    public ResponseEntity<BoardDetailRs> getBoardDetail(@RequestParam("brdSno") int brdSno) {
+        BoardDetailRs detail = boardService.getBoardDetail(brdSno);
         return ResponseEntity.ok(detail);
     }
 
@@ -55,8 +55,8 @@ public class BoardController {
     }
 
     @GetMapping("/delete")
-    public ResponseEntity<Integer> deleteBoard(@RequestParam("boardSno") int boardSno) {
-        Integer result = boardService.deleteBoard(boardSno);
+    public ResponseEntity<Integer> deleteBoard(@RequestParam("brdSno") int brdSno) {
+        Integer result = boardService.deleteBoard(brdSno);
         return ResponseEntity.ok(result);
     }
     
@@ -67,8 +67,8 @@ public class BoardController {
     }
 
     @PostMapping("/updateViews")
-    public ResponseEntity<Integer> updateViews(@RequestParam("boardSno") int boardSno) {
-        Integer result = boardService.updateViews(boardSno);
+    public ResponseEntity<Integer> updateViews(@RequestParam("brdSno") int brdSno) {
+        Integer result = boardService.updateViews(brdSno);
         return ResponseEntity.ok(result);
     }
     

@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 @Alias("boardUpdateRq")
 public class BoardUpdateRq {
-    private int boardSno;
+    private int brdSno;
     private String title;
     private String content;
     private String ctgrDivCd;

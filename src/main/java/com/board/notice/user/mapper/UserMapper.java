@@ -10,5 +10,5 @@ import com.board.notice.user.model.UserLoginRs;
 public interface UserMapper {
     int insertUserJoin(UserJoinRq rq);
     
-    boolean anyUserLogin(UserLoginRq rq);
+    UserLoginRs anyUserLogin(UserLoginRq rq);
 }

@@ -20,8 +20,8 @@ public class UserService {
         return userMapper.insertUserJoin(rq);
     }
 
-    public boolean anyUserLogin(UserLoginRq rq) {
-        boolean account = userMapper.anyUserLogin(rq);
+    public UserLoginRs anyUserLogin(UserLoginRq rq) {
+        UserLoginRs account = userMapper.anyUserLogin(rq);
         return account;
     }
 }

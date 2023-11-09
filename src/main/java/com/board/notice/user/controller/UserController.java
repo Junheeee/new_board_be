@@ -27,8 +27,8 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Boolean> anyUserLogin(@RequestBody UserLoginRq rq) {
-        boolean result = userService.anyUserLogin(rq);
+    public ResponseEntity<UserLoginRs> anyUserLogin(@RequestBody UserLoginRq rq) {
+        UserLoginRs result = userService.anyUserLogin(rq);
         return ResponseEntity.ok(result);
     }
 }

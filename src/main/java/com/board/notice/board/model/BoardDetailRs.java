@@ -9,12 +9,12 @@ import lombok.Data;
 @Data
 @Alias("boardDetailRs")
 public class BoardDetailRs {
-    private int boardSno;
+    private int brdSno;
     private String title;
     private String content;
     private int cstmrSno;
     private String cstmrNm;
-    private LocalDateTime regDate;
+    private LocalDateTime regDt;
     private String ctgrDivCd;
     private int views;
 }
