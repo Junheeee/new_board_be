@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.board.notice.reply.mapper.ReplyMapper">
+  <insert id="insertReply">
+    INSERT INTO CNS_RPLY_BAS (
+        BRD_SNO,
+        TRG_RPLY_SNO,
+        REPLY,
+        CSTMR_SNO
+    ) VALUE (
+        #{brdSno},
+        #{trgRplySno},
+        #{reply},
+        #{cstmrSno}
+    )
+  </insert>
+
+  <select id="getReplyList" resultType="replyList">
+    SELECT
+        R.RPLY_SNO,
+        R.TRG_RPLY_SNO,
+        R.REPLY,
+        R.CSTMR_SNO,
+        C.CSTMR_NM,
+        R.REG_DT,
+        R.UPD_DT
+    FROM CNS_RPLY_BAS R, PTY_CSTMR_BAS C
+    WHERE R.BRD_SNO = #{brdSno} AND R.DEL_YN = 'N' AND R.TRG_RPLY_SNO = 0 AND R.CSTMR_SNO = C.CSTMR_SNO
+    ORDER BY R.RPLY_SNO ASC
+  </select>
+
+  <select id="getChildReplyList" resultType="replyList">
+    SELECT
+        R.RPLY_SNO,
+        R.TRG_RPLY_SNO,
+        R.REPLY,
+        R.CSTMR_SNO,
+        C.CSTMR_NM,
+        R.REG_DT,
+        R.UPD_DT
+    FROM CNS_RPLY_BAS R, PTY_CSTMR_BAS C
+    WHERE R.TRG_RPLY_SNO = #{rplySno} AND R.DEL_YN = 'N' AND R.CSTMR_SNO = C.CSTMR_SNO
+    ORDER BY R.RPLY_SNO ASC
+  </select>
+
+  <select id="getReplyCnt" resultType="java.lang.Integer">
+    SELECT COUNT(*)
+    FROM CNS_RPLY_BAS R, PTY_CSTMR_BAS C
+    WHERE R.BRD_SNO = #{brdSno} AND R.DEL_YN = 'N' AND R.CSTMR_SNO = C.CSTMR_SNO
+  </select>
+
+
+</mapper>
